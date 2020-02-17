@@ -48,3 +48,13 @@
 .response-padding {
     padding: 20px;
 }
+
+#pd {
+    padding: 20px;
+    width: 100%;
+}
+
+.w100 {
+    width: 100%;
+
+}

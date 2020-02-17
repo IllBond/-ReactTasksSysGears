@@ -42,7 +42,7 @@ class Calculator extends React.Component {
             request: e.currentTarget.value
         });
         this.setState({
-            response: (e.currentTarget.value / this.state.requestCoefficient) * this.state.responseCoefficient
+            response: +((e.currentTarget.value / this.state.requestCoefficient) * this.state.responseCoefficient).toFixed(2) ||  '0'
         })
     };
 
@@ -51,7 +51,7 @@ class Calculator extends React.Component {
             response: e.currentTarget.value
         });
         this.setState({
-            request: (e.currentTarget.value / this.state.responseCoefficient) * this.state.requestCoefficient
+            request: +((e.currentTarget.value / this.state.responseCoefficient) * this.state.requestCoefficient).toFixed(2) ||   '0'
         })
     };
 
@@ -60,7 +60,7 @@ class Calculator extends React.Component {
             requestCoefficient: this.state.data[val.currentTarget.value].value
         });
         this.setState({
-            response: (this.state.request / this.state.data[val.currentTarget.value].value) * this.state.responseCoefficient
+            response: +((this.state.request / this.state.data[val.currentTarget.value].value) * this.state.responseCoefficient).toFixed(2)  ||   '0'
         })
     };
 
@@ -69,7 +69,7 @@ class Calculator extends React.Component {
             responseCoefficient: this.state.data[val.currentTarget.value].value
         });
         this.setState({
-            response: (this.state.request / this.state.requestCoefficient) * this.state.data[val.currentTarget.value].value
+            response: +((this.state.request / this.state.requestCoefficient) * this.state.data[val.currentTarget.value].value).toFixed(2) ||  '0'
         })
     }
 
@@ -77,8 +77,8 @@ class Calculator extends React.Component {
 
         let options = Object.keys(this.state.data).map(key => <option key={key}
                                                                       value={key}>{this.state.data[key].name}</option>);
-        console.log(this.state)
         return <>
+            <div className={'w100'}><h1>Альтернативный конвертор</h1></div>
             <div className={'request'}>
                 <div className={'request-padding'}>
                     <h3>Запрос</h3>

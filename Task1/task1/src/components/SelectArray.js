@@ -1,7 +1,7 @@
 import React from 'react';
 
-let ValueArray = ({change, val}) => {
+let SelectArray = ({change, options}) => {
     return <input type="text"  onChange={change} value={val}/>
 }
 
-export default ValueArray
+export default SelectArray
