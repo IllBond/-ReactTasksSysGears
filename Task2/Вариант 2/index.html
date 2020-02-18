@@ -20,23 +20,31 @@
 </body>
 <script type="text/javascript">
 	let NOTsort = [
-		{ width : 100, height : 100}, 
-		{ width : 50, height : 50}, 
-		{ width : 25, height : 25}, 
-		{ width : 25, height : 25}, 
-		{ width : 50, height : 10}, 
-		{ width : 50, height : 90}, 
+		// { width : 80, height : 80}, 
+		// { width : 40, height : 60}, 
+		// { width : 40, height : 60}, 
+		// { width : 40, height : 20}, 
+		// { width : 40, height : 15}, 
+		// { width : 40, height : 80}, 
+
+		// { width : 10, height : 80}, 
+		// { width : 40, height : 70}, 
+
+
+		// { width : 25, height : 90}, 
+		// { width : 25, height : 90}, 
+		// { width : 25, height : 30}, 
+		// { width : 35, height : 35}, 
+		// { width : 45, height : 40}, 
+
+
 		{ width : 45, height : 30}, 
 		{ width : 45, height : 55}, 
-		{ width : 45, height : 15}, 
-		{ width : 40, height : 20}, 
-		{ width : 40, height : 20}, 
+		{ width : 40, height : 15}, 
 		{ width : 40, height : 20}, 
 		{ width : 40, height : 20}, 
 		{ width : 25, height : 90}, 
 		{ width : 40, height : 20}, 
-		{ width : 25, height : 10}, 
-
 	]
 
 	const qWSort = (arr) => {
@@ -64,7 +72,9 @@
 		}
 	}
 
+	
 
+	// Отсорнтирован 
 	let sort = qHSort(qWSort(NOTsort))
 
 
@@ -75,43 +85,54 @@
 
 	let newSort = []
 
+
+	//Пробуй вставить сверзу, если не получается пробуй снизу. При этомне должно быть координат
+
+
 	sort.map((key,index) => {
 		if (newSort.length < 1) {
 			newSort = [{...key, 
 				x:0, 
-				y:0,
-				cor: {x: key.width, y: 0}, 
-			}]
+				y:0}]
 		} else {
-			for (let i = 0 ; i <  newSort.length ; i++) {
-					if (newSort[i].cor.y + key.height <= newSort[0].height && !newSort.some(item => 
-						item.x + item.width > newSort[i].cor.x &&
-						item.y + item.height > newSort[i].cor.y &&
-						item.x < newSort[i].cor.x + key.width &&
-						item.y < newSort[i].cor.y + key.height						
-						)) {
-							newSort = [...newSort, {...key, 
-											x: newSort[i].cor.x, 
-											y: newSort[i].cor.y,
-											cor: {
-													x: newSort[i].cor.x + key.width,
-											 		y: newSort[i].cor.y}, 
-												}]
-					newSort[i].cor.x = newSort[i].cor.x				
-					newSort[i].cor.y = newSort[i].cor.y + key.height
-					break	
+			for (let i = 0 ; i < newSort.length ; i++) {
+
+
+
+
+
+				
+					if (newSort[i].y + newSort[i].height + key.height < newSort[0].height 
+						&& !newSort.some(item => item.x === newSort[i].x 
+							&& item.y == newSort[i].y + newSort[i].height )) {
+						newSort = [...newSort, {...key, 
+									x: newSort[i].x, 
+									y: newSort[i].y + newSort[i].height}]
+						break
 					}
+					 else {
+						if (!newSort.some(item => item.x === newSort[i].x + newSort[i].width && item.y == newSort[i].y )) {
+							newSort = [...newSort, {...key, 
+										x: newSort[i].x + newSort[i].width, 
+										y: newSort[i].y}]
+							break
+						}
+					}
+
+
+
+
+					
 			}	
 		}
 		
 	}) 
 
-
-	canvas.height = newSort[0].height;
+	console.log(newSort)
 	newSort.map((key,index)=>{
 		ctx.strokeRect(key.x, key.y ,key.width ,key.height)
-		ctx.font = "9px Verdana";
-        ctx.fillText(index, key.x+5, key.y+9);
+		ctx.font = "12px Verdana";
+        ctx.fillText(index, key.x+5, key.y+15);
 	})
 	
 

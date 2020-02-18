@@ -20,6 +20,7 @@
 </body>
 <script type="text/javascript">
 	let NOTsort = [
+
 		{ width : 100, height : 100}, 
 		{ width : 50, height : 50}, 
 		{ width : 25, height : 25}, 
@@ -64,7 +65,9 @@
 		}
 	}
 
+	
 
+	// Отсорнтирован 
 	let sort = qHSort(qWSort(NOTsort))
 
 
@@ -106,12 +109,11 @@
 		
 	}) 
 
-
-	canvas.height = newSort[0].height;
+	console.log(newSort)
 	newSort.map((key,index)=>{
 		ctx.strokeRect(key.x, key.y ,key.width ,key.height)
-		ctx.font = "9px Verdana";
-        ctx.fillText(index, key.x+5, key.y+9);
+		ctx.font = "12px Verdana";
+        ctx.fillText(index, key.x+5, key.y+15);
 	})
 	
 

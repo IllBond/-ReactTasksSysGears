@@ -20,6 +20,7 @@
 </body>
 <script type="text/javascript">
 	let NOTsort = [
+
 		{ width : 100, height : 100}, 
 		{ width : 50, height : 50}, 
 		{ width : 25, height : 25}, 
@@ -64,7 +65,9 @@
 		}
 	}
 
+	
 
+	// Отсорнтирован 
 	let sort = qHSort(qWSort(NOTsort))
 
 
@@ -80,25 +83,22 @@
 			newSort = [{...key, 
 				x:0, 
 				y:0,
-				cor: {x: key.width, y: 0}, 
-			}]
+				corX: {x: key.width, y: 0}, 
+				corY: {x: 0, y: key.height}}]
 		} else {
 			for (let i = 0 ; i <  newSort.length ; i++) {
-					if (newSort[i].cor.y + key.height <= newSort[0].height && !newSort.some(item => 
-						item.x + item.width > newSort[i].cor.x &&
-						item.y + item.height > newSort[i].cor.y &&
-						item.x < newSort[i].cor.x + key.width &&
-						item.y < newSort[i].cor.y + key.height						
-						)) {
+					if (newSort[i].corX.y + key.height <= newSort[0].height) {
 							newSort = [...newSort, {...key, 
-											x: newSort[i].cor.x, 
-											y: newSort[i].cor.y,
-											cor: {
-													x: newSort[i].cor.x + key.width,
-											 		y: newSort[i].cor.y}, 
-												}]
-					newSort[i].cor.x = newSort[i].cor.x				
-					newSort[i].cor.y = newSort[i].cor.y + key.height
+											x: newSort[i].corX.x, 
+											y: newSort[i].corX.y,
+											corX: {
+													x: newSort[i].corX.x + key.width,
+											 		y: newSort[i].corX.y}, 
+											corY: {
+													x: newSort[i].corX.x, 
+													y: newSort[i].corX.y + key.height}}]
+					newSort[i].corX.x = newSort[i].corX.x				
+					newSort[i].corX.y = newSort[i].corX.y + key.height
 					break	
 					}
 			}	
@@ -106,12 +106,10 @@
 		
 	}) 
 
-
-	canvas.height = newSort[0].height;
 	newSort.map((key,index)=>{
 		ctx.strokeRect(key.x, key.y ,key.width ,key.height)
-		ctx.font = "9px Verdana";
-        ctx.fillText(index, key.x+5, key.y+9);
+		ctx.font = "12px Verdana";
+        ctx.fillText(index, key.x+5, key.y+15);
 	})
 	
 
